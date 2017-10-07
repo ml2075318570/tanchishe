@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #map {
+            width: 800px;
+            height: 600px;
+            position: relative;
+            margin: 0 auto;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+</body>
+<script src="Food.js"></script>
+<script src="Snake.js"></script>
+<script>
+    (function(window){
+        function Game(map){
+            this.food = new Food();
+            this.snake = new Snake();
+            this.map = map;
+        }
+        Game.prototype.start = function(){
+            // 让食物随机产生一个 让食物执行渲染方法
+            this.food.render(this.map);
+            // 让蛇执行一下渲染方法 将蛇放入页面中
+            this.snake.render(this.map);
+        }
+        window.Game = Game;
+    })(window);
+    var oMap = document.getElementById("map");
+    var game = new Game(oMap);
+    game.start();
+</script>
+</html>
